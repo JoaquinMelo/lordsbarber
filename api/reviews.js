@@ -19,7 +19,7 @@ export default async function handler(req, res) {
   }
 
   // Devuelve la copia en caché si sigue fresca
-  if (!req.query.debug && cache.data && Date.now() - cache.time < CACHE_MS) {
+  if (cache.data && Date.now() - cache.time < CACHE_MS) {
     res.setHeader("Cache-Control", "public, s-maxage=21600");
     return res.status(200).json(cache.data);
   }
@@ -41,21 +41,6 @@ export default async function handler(req, res) {
     }
 
     const g = await r.json();
-
-    if (req.query.debug) {
-      // Segundo intento sin languageCode y sin el query param "fields" redundante,
-      // para descartar que el filtro de idioma esté vaciando las reviews.
-      const url2 = `https://places.googleapis.com/v1/places/${PLACE_ID}`;
-      const r2 = await fetch(url2, {
-        headers: { "X-Goog-Api-Key": key, "X-Goog-FieldMask": "rating,userRatingCount,reviews" }
-      });
-      const g2 = r2.ok ? await r2.json() : { httpError: r2.status, body: await r2.text() };
-
-      return res.status(200).json({
-        attempt1_withLangEs: { keys: Object.keys(g), reviewsCount: (g.reviews || []).length },
-        attempt2_noLangNoFieldsParam: { keys: Object.keys(g2), reviewsCount: (g2.reviews || []).length, raw: g2.reviews || g2 }
-      });
-    }
 
     const payload = {
       rating: g.rating ?? null,
