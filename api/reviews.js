@@ -51,7 +51,7 @@ export default async function handler(req, res) {
         texto: rv.originalText?.text || rv.text?.text || "",
         foto: rv.authorAttribution?.photoUri || "",
         link: rv.authorAttribution?.uri || ""
-      })).filter(rv => rv.texto)
+      })).filter(rv => rv.texto && rv.estrellas >= 4)
     };
 
     cache = { data: payload, time: Date.now() };
