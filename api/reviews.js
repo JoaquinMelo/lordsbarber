@@ -19,7 +19,7 @@ export default async function handler(req, res) {
   }
 
   // Devuelve la copia en caché si sigue fresca
-  if (cache.data && Date.now() - cache.time < CACHE_MS) {
+  if (!req.query.debug && cache.data && Date.now() - cache.time < CACHE_MS) {
     res.setHeader("Cache-Control", "public, s-maxage=21600");
     return res.status(200).json(cache.data);
   }
@@ -41,6 +41,10 @@ export default async function handler(req, res) {
     }
 
     const g = await r.json();
+
+    if (req.query.debug) {
+      return res.status(200).json({ rawReviewsCount: (g.reviews || []).length, rawReviews: g.reviews || [], keys: Object.keys(g) });
+    }
 
     const payload = {
       rating: g.rating ?? null,
