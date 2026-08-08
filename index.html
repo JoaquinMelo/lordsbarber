@@ -3,306 +3,424 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lord's Barber Shop</title>
+<title>Lord's Barber Shop | Reserva tu hora</title>
+<meta name="description" content="Lord's Barber Shop — cortes clásicos, degradados, barba y cuidado facial. Agenda tu hora por WhatsApp.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg-deep: #14201A;
-    --bg: #1F3329;
-    --cream: #F2E9D8;
-    --brass: #C89B3C;
-    --red: #A23E32;
-    --stripe: #E8DFC8;
-    --line: rgba(242,233,216,0.14);
+    --bg-deep:#14201A;
+    --bg:#1F3329;
+    --bg-soft:#24392D;
+    --cream:#F2E9D8;
+    --brass:#C89B3C;
+    --red:#A23E32;
+    --stripe:#E8DFC8;
+    --line:rgba(242,233,216,0.14);
+    --muted:rgba(242,233,216,0.62);
+    --wa:#25D366;
   }
 
-  *{ box-sizing: border-box; }
+  *{box-sizing:border-box;}
 
-  html, body{
-    margin:0;
-    padding:0;
-    min-height:100%;
-    background: var(--bg-deep);
-    color: var(--cream);
-    font-family: 'Work Sans', sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
+  html{scroll-behavior:smooth;}
 
   body{
+    margin:0;
     background:
-      radial-gradient(circle at 50% -10%, rgba(200,155,60,0.10), transparent 55%),
+      radial-gradient(circle at 50% -8%, rgba(200,155,60,0.10), transparent 55%),
       var(--bg-deep);
-    display:flex;
-    justify-content:center;
-    padding: 56px 20px 40px;
+    color:var(--cream);
+    font-family:'Work Sans',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:96px;
   }
 
-  .page{
+  img{max-width:100%;display:block;}
+
+  .wrap{
     width:100%;
-    max-width: 460px;
+    max-width:520px;
+    margin:0 auto;
+    padding:0 20px;
   }
 
-  /* --- Barber pole stripe divider: the signature element --- */
-  .pole-stripe{
-    height: 10px;
-    width:100%;
-    border-radius: 6px;
-    background: repeating-linear-gradient(
-      -45deg,
+  /* ---------- barber pole signature ---------- */
+  .pole{
+    height:10px;
+    border-radius:6px;
+    background:repeating-linear-gradient(-45deg,
       var(--red) 0 14px,
       var(--stripe) 14px 28px,
-      var(--bg) 28px 42px
-    );
-    box-shadow: 0 2px 0 rgba(0,0,0,0.25) inset;
+      var(--bg) 28px 42px);
+    box-shadow:inset 0 2px 0 rgba(0,0,0,.25);
   }
 
-  header{
-    text-align:center;
-    margin: 30px 0 34px;
-  }
+  /* ---------- hero ---------- */
+  .hero{padding:44px 0 8px;text-align:center;}
 
   .eyebrow{
-    font-family:'Space Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--brass);
-    margin-bottom: 14px;
+    font-family:'Space Mono',monospace;
+    font-size:11px;letter-spacing:3px;text-transform:uppercase;
+    color:var(--brass);margin:26px 0 12px;
   }
 
   h1{
-    font-family:'Oswald', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: clamp(34px, 9vw, 44px);
-    letter-spacing: 1px;
-    line-height: 1.05;
-    margin: 0 0 10px;
+    font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;
+    font-size:clamp(34px,9vw,46px);letter-spacing:1px;line-height:1.05;margin:0 0 10px;
   }
+  h1 span{color:var(--brass);}
 
-  h1 span{ color: var(--brass); }
+  .tagline{font-size:14.5px;color:var(--muted);max-width:330px;margin:0 auto;}
 
-  .tagline{
-    font-size: 14.5px;
-    color: rgba(242,233,216,0.72);
-    max-width: 320px;
-    margin: 0 auto;
-  }
-
-  /* --- Avatar / emblem --- */
   .emblem{
-    width: 84px;
-    height: 84px;
-    margin: 22px auto 0;
-    border-radius: 50%;
-    border: 2px solid var(--brass);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background: var(--bg);
+    width:88px;height:88px;margin:24px auto 0;border-radius:50%;
+    border:2px solid var(--brass);display:flex;align-items:center;justify-content:center;
+    background:var(--bg);
+  }
+  .emblem svg{width:42px;height:42px;}
+
+  /* ---------- section headers ---------- */
+  .sec{margin-top:46px;}
+
+  .sec-eyebrow{
+    font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:2.5px;
+    text-transform:uppercase;color:var(--brass);text-align:center;margin:0 0 8px;
   }
 
-  .emblem svg{ width: 40px; height: 40px; }
-
-  /* --- Link "ticket" buttons --- */
-  nav{
-    display:flex;
-    flex-direction:column;
-    gap: 14px;
+  h2{
+    font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;
+    font-size:22px;letter-spacing:1.5px;text-align:center;margin:0 0 20px;
   }
+
+  /* ---------- contact tickets ---------- */
+  .tickets{display:flex;flex-direction:column;gap:12px;}
 
   .ticket{
-    position: relative;
-    display:flex;
-    align-items:center;
-    gap: 14px;
-    padding: 16px 18px;
-    background: var(--bg);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    text-decoration:none;
-    color: var(--cream);
-    transition: transform .15s ease, border-color .15s ease, background .15s ease;
+    position:relative;display:flex;align-items:center;gap:14px;
+    padding:15px 17px;background:var(--bg);border:1px solid var(--line);
+    border-radius:10px;text-decoration:none;color:var(--cream);
+    transition:transform .15s ease,border-color .15s ease,background .15s ease;
   }
-
-  .ticket:hover,
-  .ticket:focus-visible{
-    transform: translateY(-2px);
-    border-color: var(--brass);
-    background: #24392D;
+  .ticket:hover,.ticket:focus-visible{
+    transform:translateY(-2px);border-color:var(--brass);background:var(--bg-soft);
   }
+  .ticket:focus-visible{outline:2px solid var(--brass);outline-offset:2px;}
 
-  .ticket:focus-visible{
-    outline: 2px solid var(--brass);
-    outline-offset: 2px;
+  .ticket .ic{
+    flex:0 0 auto;width:38px;height:38px;border-radius:8px;display:flex;
+    align-items:center;justify-content:center;background:rgba(200,155,60,.12);color:var(--brass);
   }
-
-  .ticket .icon{
-    flex: 0 0 auto;
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background: rgba(200,155,60,0.12);
-    color: var(--brass);
+  .ticket .ic svg{width:19px;height:19px;}
+  .ticket .tx{flex:1;min-width:0;}
+  .ticket .lb{
+    font-family:'Oswald',sans-serif;font-weight:600;font-size:16px;
+    letter-spacing:.3px;text-transform:uppercase;
   }
+  .ticket .sb{font-size:12.5px;color:var(--muted);margin-top:1px;}
+  .ticket .ar{flex:0 0 auto;color:var(--brass);font-size:17px;opacity:.8;}
 
-  .ticket .icon svg{ width: 20px; height: 20px; }
-
-  .ticket .text{ flex:1; min-width:0; }
-
-  .ticket .label{
-    font-family:'Oswald', sans-serif;
-    font-weight: 600;
-    font-size: 17px;
-    letter-spacing: .3px;
-    text-transform: uppercase;
-  }
-
-  .ticket .sub{
-    font-size: 12.5px;
-    color: rgba(242,233,216,0.6);
-    margin-top: 1px;
-  }
-
-  .ticket .arrow{
-    flex: 0 0 auto;
-    color: var(--brass);
-    font-size: 18px;
-    opacity: .8;
-  }
-
-  /* perforated ticket edge */
-  .ticket::before{
-    content:"";
-    position:absolute;
-    left: 66px;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: repeating-linear-gradient(
-      to bottom,
-      var(--line) 0 4px,
-      transparent 4px 9px
-    );
-  }
-
-  footer{
-    margin-top: 34px;
-    text-align:center;
-  }
-
-  .hours{
-    font-family:'Space Mono', monospace;
-    font-size: 11.5px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: rgba(242,233,216,0.5);
-  }
-
-  .pole-stripe.bottom{ margin-top: 22px; }
-
-  /* --- Team section --- */
-  .team{
-    margin-top: 38px;
-  }
-
-  .section-title{
-    font-family:'Oswald', sans-serif;
-    text-transform: uppercase;
-    font-size: 13px;
-    letter-spacing: 2.5px;
-    color: var(--brass);
-    text-align:center;
-    margin: 0 0 16px;
-  }
-
-  .team-grid{
-    display:grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-  }
+  /* ---------- team ---------- */
+  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
 
   .barber{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    text-decoration:none;
-    color: var(--cream);
-    background: var(--bg);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 14px 8px 12px;
-    transition: transform .15s ease, border-color .15s ease, background .15s ease;
+    display:flex;flex-direction:column;align-items:center;text-decoration:none;
+    color:var(--cream);background:var(--bg);border:1px solid var(--line);
+    border-radius:10px;padding:14px 8px 12px;
+    transition:transform .15s ease,border-color .15s ease,background .15s ease;
+  }
+  .barber:hover,.barber:focus-visible{
+    transform:translateY(-2px);border-color:var(--brass);background:var(--bg-soft);
+  }
+  .barber:focus-visible{outline:2px solid var(--brass);outline-offset:2px;}
+
+  .barber .ph{
+    width:66px;height:66px;border-radius:50%;object-fit:cover;
+    border:2px solid var(--brass);margin-bottom:9px;background:var(--bg-soft);
+  }
+  .barber .nm{
+    font-family:'Oswald',sans-serif;font-weight:600;font-size:13.5px;
+    text-transform:uppercase;letter-spacing:.5px;text-align:center;
+  }
+  .barber .rl{
+    font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.8px;
+    text-transform:uppercase;color:var(--muted);margin-top:3px;text-align:center;
+  }
+  .barber .go{
+    font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:1px;
+    text-transform:uppercase;color:var(--brass);margin-top:7px;
   }
 
-  .barber:hover,
-  .barber:focus-visible{
-    transform: translateY(-2px);
-    border-color: var(--brass);
-    background: #24392D;
+  /* ---------- services ---------- */
+  .svc-list{display:flex;flex-direction:column;gap:16px;}
+
+  .svc{
+    background:var(--bg);border:1px solid var(--line);border-radius:12px;overflow:hidden;
   }
 
-  .barber:focus-visible{
-    outline: 2px solid var(--brass);
-    outline-offset: 2px;
+  .svc-img{
+    height:150px;background:linear-gradient(135deg,var(--bg-soft),var(--bg-deep));
+    display:flex;align-items:center;justify-content:center;position:relative;
+  }
+  .svc-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+  .svc-img .ph-ic{color:rgba(200,155,60,.35);font-size:34px;}
+
+  .svc-body{padding:16px 17px 17px;}
+
+  .svc h3{
+    font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;
+    font-size:17px;letter-spacing:.5px;margin:0 0 6px;line-height:1.2;
+  }
+  .svc .desc{font-size:13.5px;color:var(--muted);margin:0 0 12px;line-height:1.5;}
+
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;}
+  .chip{
+    font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.8px;
+    text-transform:uppercase;color:var(--brass);
+    border:1px solid rgba(200,155,60,.3);border-radius:20px;padding:4px 10px;
   }
 
-  .barber .photo{
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid var(--brass);
-    margin-bottom: 9px;
-    background: #24392D;
+  .incl-toggle{
+    background:none;border:none;padding:0;cursor:pointer;
+    font-family:'Space Mono',monospace;font-size:10px;letter-spacing:1.2px;
+    text-transform:uppercase;color:var(--muted);margin-bottom:10px;
+    display:flex;align-items:center;gap:6px;
+  }
+  .incl-toggle:hover{color:var(--brass);}
+  .incl-toggle .cv{transition:transform .2s ease;display:inline-block;}
+  .incl-toggle[aria-expanded="true"] .cv{transform:rotate(90deg);}
+
+  .incl{
+    margin:0 0 12px;padding:0 0 0 16px;list-style:none;
+    font-size:13px;color:var(--muted);line-height:1.7;display:none;
+  }
+  .incl.open{display:block;}
+  .incl li{position:relative;}
+  .incl li::before{
+    content:"";position:absolute;left:-14px;top:9px;width:5px;height:5px;
+    border-radius:50%;background:var(--brass);
   }
 
-  .barber .name{
-    font-family:'Oswald', sans-serif;
-    font-weight: 600;
-    font-size: 13.5px;
-    text-transform: uppercase;
-    letter-spacing: .5px;
+  .svc-foot{
+    display:flex;align-items:center;gap:10px;justify-content:space-between;
+    border-top:1px solid var(--line);padding-top:14px;flex-wrap:wrap;
+  }
+  .price{
+    font-family:'Oswald',sans-serif;font-weight:700;font-size:21px;
+    color:var(--brass);letter-spacing:.5px;
   }
 
-  .barber .cta{
-    font-family:'Space Mono', monospace;
-    font-size: 9.5px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: rgba(242,233,216,0.55);
-    margin-top: 3px;
+  .svc-actions{display:flex;gap:8px;}
+
+  .btn{
+    font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;
+    letter-spacing:1px;font-size:12.5px;border-radius:8px;padding:10px 14px;
+    cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;
+    justify-content:center;gap:6px;transition:transform .12s ease,background .15s ease,border-color .15s ease;
+    border:1px solid transparent;
+  }
+  .btn:active{transform:scale(.97);}
+  .btn:focus-visible{outline:2px solid var(--brass);outline-offset:2px;}
+
+  .btn-add{background:transparent;border-color:var(--brass);color:var(--brass);}
+  .btn-add:hover{background:rgba(200,155,60,.12);}
+  .btn-add.added{background:var(--brass);color:var(--bg-deep);}
+
+  .btn-wa{background:var(--brass);color:var(--bg-deep);}
+  .btn-wa:hover{background:#d8a944;}
+
+  .btn-full{width:100%;padding:14px;font-size:14px;}
+
+  /* ---------- map ---------- */
+  .map-box{
+    border:1px solid var(--line);border-radius:12px;overflow:hidden;
+    background:var(--bg);
+  }
+  .map-box iframe{width:100%;height:260px;border:0;display:block;filter:saturate(.85);}
+  .map-foot{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:14px 16px;border-top:1px solid var(--line);flex-wrap:wrap;
+  }
+  .map-foot .addr2{font-size:13px;color:var(--muted);line-height:1.45;flex:1;min-width:140px;}
+  .map-foot .addr2 b{
+    display:block;color:var(--cream);font-family:'Oswald',sans-serif;
+    font-weight:500;font-size:14px;text-transform:uppercase;letter-spacing:.4px;margin-bottom:2px;
   }
 
-  @media (max-width: 360px){
-    .barber .name{ font-size: 12px; }
+  /* ---------- testimonials ---------- */
+  .rating-line{
+    text-align:center;font-family:'Space Mono',monospace;font-size:11px;
+    letter-spacing:1.5px;color:var(--muted);margin:0 0 18px;
+  }
+  .stars{color:var(--brass);letter-spacing:2px;}
+
+  .tst-scroll{
+    display:flex;gap:12px;overflow-x:auto;padding-bottom:10px;
+    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    margin:0 -20px;padding-left:20px;padding-right:20px;
+  }
+  .tst-scroll::-webkit-scrollbar{height:4px;}
+  .tst-scroll::-webkit-scrollbar-thumb{background:rgba(200,155,60,.35);border-radius:4px;}
+
+  .tst{
+    flex:0 0 250px;scroll-snap-align:start;background:var(--bg);
+    border:1px solid var(--line);border-radius:10px;padding:16px;
+  }
+  .tst .who{
+    font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;
+    text-transform:uppercase;letter-spacing:.5px;
+  }
+  .tst .st{color:var(--brass);font-size:12px;letter-spacing:2px;margin:4px 0 8px;}
+  .tst .qt{font-size:13px;color:var(--muted);line-height:1.55;margin:0;font-style:italic;}
+
+  /* ---------- footer ---------- */
+  footer{margin-top:48px;text-align:center;padding-bottom:20px;}
+  .hours{
+    font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:1.5px;
+    text-transform:uppercase;color:var(--muted);margin:16px 0 6px;
+  }
+  .addr{font-size:12.5px;color:rgba(242,233,216,0.45);margin:0;}
+
+  /* ---------- floating buttons ---------- */
+  .fabs{
+    position:fixed;right:16px;bottom:18px;z-index:50;
+    display:flex;flex-direction:column;gap:10px;align-items:flex-end;
   }
 
-  @media (prefers-reduced-motion: no-preference){
-    .ticket{ transition: transform .15s ease, border-color .15s ease, background .15s ease; }
+  .fab{
+    width:54px;height:54px;border-radius:50%;border:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;position:relative;
+    box-shadow:0 6px 20px rgba(0,0,0,.4);text-decoration:none;
+    transition:transform .15s ease;
+  }
+  .fab:hover{transform:scale(1.06);}
+  .fab:focus-visible{outline:2px solid var(--cream);outline-offset:3px;}
+
+  .fab-cart{background:var(--brass);color:var(--bg-deep);font-size:24px;}
+  .fab-wa{background:var(--wa);color:#fff;}
+  .fab-wa svg{width:28px;height:28px;}
+
+  .badge{
+    position:absolute;top:-3px;right:-3px;min-width:22px;height:22px;padding:0 5px;
+    border-radius:11px;background:var(--red);color:#fff;
+    font-family:'Space Mono',monospace;font-size:11px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+    border:2px solid var(--bg-deep);
+  }
+  .badge[hidden]{display:none;}
+
+  /* ---------- modals ---------- */
+  .overlay{
+    position:fixed;inset:0;background:rgba(10,16,13,.78);backdrop-filter:blur(3px);
+    z-index:100;display:flex;align-items:flex-end;justify-content:center;
+    opacity:0;pointer-events:none;transition:opacity .2s ease;
+  }
+  .overlay.show{opacity:1;pointer-events:auto;}
+
+  .sheet{
+    width:100%;max-width:520px;max-height:88vh;overflow-y:auto;
+    background:var(--bg-deep);border:1px solid var(--line);
+    border-radius:16px 16px 0 0;padding:0 20px 24px;
+    transform:translateY(24px);transition:transform .22s ease;
+  }
+  .overlay.show .sheet{transform:translateY(0);}
+
+  .sheet-head{
+    position:sticky;top:0;background:var(--bg-deep);padding:18px 0 14px;
+    display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+    border-bottom:1px solid var(--line);margin-bottom:16px;z-index:2;
+  }
+  .sheet-head h3{
+    font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase;
+    font-size:19px;letter-spacing:1px;margin:0;
+  }
+  .sheet-head p{font-size:12.5px;color:var(--muted);margin:4px 0 0;}
+
+  .close{
+    background:none;border:none;color:var(--muted);font-size:26px;line-height:1;
+    cursor:pointer;padding:0 4px;
+  }
+  .close:hover{color:var(--cream);}
+
+  /* cart rows */
+  .cart-row{
+    display:flex;align-items:center;gap:12px;padding:12px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .cart-row .nm2{flex:1;min-width:0;}
+  .cart-row .nm2 b{
+    font-family:'Oswald',sans-serif;font-weight:500;font-size:14.5px;
+    text-transform:uppercase;letter-spacing:.3px;display:block;
+  }
+  .cart-row .nm2 small{font-size:11.5px;color:var(--muted);font-family:'Space Mono',monospace;}
+  .cart-row .pr{font-family:'Oswald',sans-serif;font-weight:600;color:var(--brass);font-size:15px;}
+  .cart-row .rm{
+    background:none;border:1px solid var(--line);color:var(--muted);border-radius:6px;
+    width:28px;height:28px;cursor:pointer;font-size:16px;line-height:1;
+  }
+  .cart-row .rm:hover{border-color:var(--red);color:var(--red);}
+
+  .empty{text-align:center;color:var(--muted);font-size:13.5px;padding:26px 0;}
+
+  .total{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:16px 0 4px;
+  }
+  .total .lbl{
+    font-family:'Space Mono',monospace;font-size:11px;letter-spacing:1.5px;
+    text-transform:uppercase;color:var(--muted);
+  }
+  .total .amt{font-family:'Oswald',sans-serif;font-weight:700;font-size:26px;color:var(--brass);}
+
+  .note{
+    font-size:11.5px;color:rgba(242,233,216,0.42);text-align:center;
+    margin:6px 0 16px;line-height:1.5;
+  }
+
+  /* form */
+  .field{margin-bottom:14px;}
+  .field label{
+    display:block;font-family:'Space Mono',monospace;font-size:10.5px;
+    letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;
+  }
+  .field input,.field select,.field textarea{
+    width:100%;background:var(--bg);border:1px solid var(--line);border-radius:8px;
+    padding:12px;color:var(--cream);font-family:'Work Sans',sans-serif;font-size:14.5px;
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{
+    outline:none;border-color:var(--brass);
+  }
+  .field textarea{resize:vertical;min-height:70px;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+
+  .err{color:var(--red);font-size:12px;margin:-8px 0 12px;display:none;}
+  .err.show{display:block;}
+
+  @media (max-width:360px){
+    .barber .nm{font-size:12px;}
+    .svc-actions{width:100%;}
+    .svc-actions .btn{flex:1;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none !important;scroll-behavior:auto !important;}
   }
 </style>
 </head>
 <body>
-<div class="page">
 
-  <div class="pole-stripe" aria-hidden="true"></div>
+<div class="wrap">
 
-  <header>
-    <div class="eyebrow">Pucón · Chile</div>
-    <h1>Lord's<br><span>Barber Shop</span></h1>
-    <p class="tagline">Cortes clásicos, afeitado a navaja y estilo con historia.</p>
+  <div class="pole" aria-hidden="true"></div>
 
+  <header class="hero">
+    <div class="eyebrow" id="cfg-city">Chile</div>
+    <h1 id="cfg-name1">Lord's<br><span id="cfg-name2">Barber Shop</span></h1>
+    <p class="tagline" id="cfg-tagline">Cortes clásicos, afeitado a navaja y estilo con historia.</p>
     <div class="emblem" aria-hidden="true">
-      <!-- scissors icon -->
       <svg viewBox="0 0 24 24" fill="none" stroke="#C89B3C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="6" cy="6" r="3"></circle>
-        <circle cx="6" cy="18" r="3"></circle>
+        <circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle>
         <line x1="20" y1="4" x2="8.12" y2="15.88"></line>
         <line x1="14.47" y1="14.48" x2="20" y2="20"></line>
         <line x1="8.12" y1="8.12" x2="12" y2="12"></line>
@@ -310,58 +428,475 @@
     </div>
   </header>
 
-  <nav>
-    <!-- EDITA los href de abajo con tus links reales -->
-    <a class="ticket" href="https://wa.me/56956036217" target="_blank" rel="noopener">
-      <span class="icon">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.28-1.38a9.9 9.9 0 0 0 4.76 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm0 18.1h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.13.82.84-3.05-.2-.31a8.2 8.2 0 0 1-1.26-4.33c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.25 8.24Zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.7-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08s.89 2.41 1.02 2.58c.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.19.21-.58.21-1.08.14-1.19-.06-.1-.23-.16-.48-.28Z"/></svg>
-      </span>
-      <span class="text">
-        <span class="label">Reserva por WhatsApp</span>
-        <span class="sub">Agenda tu hora con Sofía, al toque</span>
-      </span>
-      <span class="arrow">→</span>
-    </a>
+  <!-- CONTACTO -->
+  <section class="sec">
+    <p class="sec-eyebrow">Únete a la experiencia</p>
+    <h2>Conecta con nosotros</h2>
+    <nav class="tickets" id="contact-list"></nav>
+  </section>
 
-    <a class="ticket" href="https://instagram.com/lordsbarbershoppucon" target="_blank" rel="noopener">
-      <span class="icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"></circle></svg>
-      </span>
-      <span class="text">
-        <span class="label">Instagram</span>
-        <span class="sub">Mira nuestros cortes y trabajos</span>
-      </span>
-      <span class="arrow">→</span>
-    </a>
-  </nav>
+  <!-- EQUIPO -->
+  <section class="sec">
+    <p class="sec-eyebrow">Elige tu barbero</p>
+    <h2>Nuestro equipo</h2>
+    <div class="team-grid" id="team-grid"></div>
+  </section>
 
-  <section class="team">
-    <p class="section-title">Nuestro equipo</p>
-    <div class="team-grid">
-      <!-- EDITA: reemplaza el src de cada foto por /fotos/rodrigo.jpg, etc. cuando las subas al repo -->
-      <a class="barber" href="https://wa.me/56956036217?text=Hola%2C%20quiero%20agendar%20una%20hora%20con%20Rodrigo" target="_blank" rel="noopener">
-        <img class="photo" src="https://ui-avatars.com/api/?name=Rodrigo&background=1F3329&color=C89B3C&bold=true&size=128" alt="Rodrigo">
-        <span class="name">Rodrigo</span>
-        <span class="cta">Agendar →</span>
-      </a>
-      <a class="barber" href="https://wa.me/56956036217?text=Hola%2C%20quiero%20agendar%20una%20hora%20con%20Sebasti%C3%A1n" target="_blank" rel="noopener">
-        <img class="photo" src="https://ui-avatars.com/api/?name=Sebastian&background=1F3329&color=C89B3C&bold=true&size=128" alt="Sebastián">
-        <span class="name">Sebastián</span>
-        <span class="cta">Agendar →</span>
-      </a>
-      <a class="barber" href="https://wa.me/56956036217?text=Hola%2C%20quiero%20agendar%20una%20hora%20con%20Luis" target="_blank" rel="noopener">
-        <img class="photo" src="https://ui-avatars.com/api/?name=Luis&background=1F3329&color=C89B3C&bold=true&size=128" alt="Luis">
-        <span class="name">Luis</span>
-        <span class="cta">Agendar →</span>
-      </a>
+  <!-- SERVICIOS -->
+  <section class="sec">
+    <p class="sec-eyebrow">Experiencia exclusiva</p>
+    <h2>Menú de servicios</h2>
+    <div class="svc-list" id="svc-list"></div>
+  </section>
+
+  <!-- UBICACIÓN -->
+  <section class="sec">
+    <p class="sec-eyebrow">Visítanos</p>
+    <h2>Dónde estamos</h2>
+    <div class="map-box">
+      <iframe id="map-frame" loading="lazy" allowfullscreen
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Ubicación de la barbería"></iframe>
+      <div class="map-foot">
+        <span class="addr2"><b id="map-name">Barbería</b><span id="map-addr"></span></span>
+        <a class="btn btn-wa" id="map-btn" href="#" target="_blank" rel="noopener">Cómo llegar</a>
+      </div>
     </div>
   </section>
 
+  <!-- TESTIMONIOS -->
+  <section class="sec">
+    <p class="sec-eyebrow">Lo que dicen</p>
+    <h2>Testimonios</h2>
+    <p class="rating-line"><span class="stars">★★★★★</span> <span id="cfg-rating">4.9 / 5 en Google</span></p>
+    <div class="tst-scroll" id="tst-scroll"></div>
+  </section>
+
   <footer>
-    <div class="pole-stripe bottom" aria-hidden="true"></div>
-    <p class="hours" style="margin-top:16px;">Lun – Sáb · 10:00 – 20:00</p>
+    <div class="pole" aria-hidden="true"></div>
+    <p class="hours" id="cfg-hours">Lun – Sáb · 10:00 – 20:00</p>
+    <p class="addr" id="cfg-addr">Dirección de la barbería</p>
   </footer>
 
 </div>
+
+<!-- BOTONES FLOTANTES -->
+<div class="fabs">
+  <button class="fab fab-cart" id="fab-cart" aria-label="Ver mi selección">
+    💈<span class="badge" id="cart-badge" hidden>0</span>
+  </button>
+  <a class="fab fab-wa" id="fab-wa" href="#" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.28-1.38a9.9 9.9 0 0 0 4.76 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm0 18.1h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.13.82.84-3.05-.2-.31a8.2 8.2 0 0 1-1.26-4.33c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.25 8.24Zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.4-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.7-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08s.89 2.41 1.02 2.58c.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.19.21-.58.21-1.08.14-1.19-.06-.1-.23-.16-.48-.28Z"/></svg>
+  </a>
+</div>
+
+<!-- MODAL CARRITO -->
+<div class="overlay" id="ov-cart" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+  <div class="sheet">
+    <div class="sheet-head">
+      <div>
+        <h3 id="cart-title">Tu selección</h3>
+        <p>Servicios que quieres agendar</p>
+      </div>
+      <button class="close" data-close="ov-cart" aria-label="Cerrar">×</button>
+    </div>
+    <div id="cart-items"></div>
+    <div class="total">
+      <span class="lbl">Total estimado</span>
+      <span class="amt" id="cart-total">$0</span>
+    </div>
+    <p class="note">Valor referencial. El precio final se confirma en la barbería según el servicio.</p>
+    <button class="btn btn-wa btn-full" id="go-booking">Agendar turno</button>
+  </div>
+</div>
+
+<!-- MODAL RESERVA -->
+<div class="overlay" id="ov-book" role="dialog" aria-modal="true" aria-labelledby="book-title">
+  <div class="sheet">
+    <div class="sheet-head">
+      <div>
+        <h3 id="book-title">Datos de reserva</h3>
+        <p>Completa para asegurar tu hora</p>
+      </div>
+      <button class="close" data-close="ov-book" aria-label="Cerrar">×</button>
+    </div>
+
+    <div class="field">
+      <label for="f-name">Tu nombre</label>
+      <input id="f-name" type="text" placeholder="Ej: Juan Pérez" autocomplete="name">
+    </div>
+    <p class="err" id="e-name">Escribe tu nombre para continuar.</p>
+
+    <div class="field">
+      <label for="f-barber">Barbero preferido</label>
+      <select id="f-barber"></select>
+    </div>
+
+    <div class="row2">
+      <div class="field">
+        <label for="f-date">Día preferido</label>
+        <input id="f-date" type="date">
+      </div>
+      <div class="field">
+        <label for="f-time">Hora preferida</label>
+        <input id="f-time" type="time">
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="f-note">Comentario (opcional)</label>
+      <textarea id="f-note" placeholder="Algo que debamos saber..."></textarea>
+    </div>
+
+    <button class="btn btn-wa btn-full" id="send-wa">📲 Confirmar por WhatsApp</button>
+    <p class="note">Se abrirá WhatsApp con tu reserva lista para enviar.</p>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   ⚙️  CONFIGURACIÓN — EDITA SOLO ESTE BLOQUE
+   ========================================================= */
+const CONFIG = {
+  // Número de WhatsApp SIN el "+", formato: 569XXXXXXXX
+  whatsapp: "56994374662",
+
+  negocio: "Lord's Barber Shop",
+  ciudad:  "Pucón · Araucanía",
+  tagline: "Cortes clásicos, afeitado a navaja y estilo con historia.",
+  horario: "Lun – Sáb · 10:00 – 20:00 · Dom cerrado",
+  direccion: "Miguel Ansorena 323, Pucón",
+  rating: "4.7 / 5 · 154 reseñas en Google",
+
+  // Links (deja "" en los que no uses y desaparecen solos)
+  instagram: "https://instagram.com/lordsbarbershop",
+  facebook:  "",
+  maps:      "https://maps.app.goo.gl/n5gsakZStMdfokiP6",
+  email:     "",
+
+  // --- Mapa ---
+  // Coordenadas exactas del local (las saqué de tu link de Google Maps)
+  lat: -39.2755913,
+  lng: -71.974832,
+  // Nombre tal cual aparece en Google Maps (para que el pin muestre la ficha)
+  mapsQuery: "BARBERIA LORD'S BARBER SHOP PUCON, Miguel Ansorena 323, Pucón",
+
+  // --- Reseñas de Google ---
+  // Si despliegas la función /api/reviews (ver README), ponlo en true
+  // y las reseñas se cargarán solas desde Google.
+  reviewsAuto: false
+};
+
+const BARBEROS = [
+  { nombre: "Rodrigo",   rol: "Barbero",       foto: "" },
+  { nombre: "Sebastián", rol: "Barbero",       foto: "" },
+  { nombre: "Luis",      rol: "Barbero",       foto: "" }
+];
+// Para usar fotos reales: sube las imágenes al repo (carpeta "fotos/")
+// y pon foto: "fotos/rodrigo.jpg"
+
+const SERVICIOS = [
+  {
+    nombre: "Corte clásico / degradado",
+    desc: "Precisión, estilo y limpieza en cada detalle.",
+    precio: 12000,
+    duracion: "30 – 40 min",
+    badge: "Imagen impecable",
+    foto: "",
+    incluye: [
+      "Asesoría personalizada de estilo.",
+      "Corte clásico o degradado (fade).",
+      "Definición precisa de contornos.",
+      "Acabados con máquina y navaja.",
+      "Productos profesionales de terminación."
+    ]
+  },
+  {
+    nombre: "Corte + barba",
+    desc: "El equilibrio perfecto entre estilo y elegancia.",
+    precio: 20000,
+    duracion: "45 – 60 min",
+    badge: "Imagen completa",
+    foto: "",
+    incluye: [
+      "Asesoría integral (corte + barba).",
+      "Corte profesional clásico o degradado.",
+      "Perfilado, rebaje y diseño de barba.",
+      "Definición de contornos con navaja.",
+      "Styling final con productos premium."
+    ]
+  },
+  {
+    nombre: "Perfilado de barba",
+    desc: "Barba definida, saludable y sin irritaciones.",
+    precio: 10000,
+    duracion: "25 – 35 min",
+    badge: "Cuidado premium",
+    foto: "",
+    incluye: [
+      "Toalla caliente para abrir poros.",
+      "Perfilado y diseño de barba.",
+      "Definición de líneas y contornos.",
+      "Afeitado con navaja de precisión.",
+      "Productos calmantes e hidratantes."
+    ]
+  },
+  {
+    nombre: "Corte con diseño",
+    desc: "Líneas precisas y arte personalizado a tu estilo.",
+    precio: 15000,
+    duracion: "40 – 50 min",
+    badge: "Look único",
+    foto: "",
+    incluye: [
+      "Asesoría de diseño según tu rostro.",
+      "Corte base clásico o degradado.",
+      "Diseño personalizado a navaja.",
+      "Definición milimétrica de contornos.",
+      "Styling final premium."
+    ]
+  }
+];
+
+const TESTIMONIOS = [
+  { nombre: "Andrés S.",  estrellas: 5, texto: "La mejor atención. El degradado quedó impecable y el ambiente es muy bueno." },
+  { nombre: "Juan Pablo", estrellas: 5, texto: "Excelente servicio, muy profesionales. El ritual de barba es otro nivel." },
+  { nombre: "Ricardo M.", estrellas: 4, texto: "Puntualidad y limpieza. Difícil encontrar un lugar con este estándar." },
+  { nombre: "Mateo G.",   estrellas: 5, texto: "Ambiente relajante y barberos que realmente saben lo que hacen." },
+  { nombre: "Luis M.",    estrellas: 5, texto: "Gran experiencia. Los productos que usan son de primera." }
+];
+
+/* =========================================================
+   ⛔ DE AQUÍ HACIA ABAJO NO NECESITAS EDITAR NADA
+   ========================================================= */
+
+const clp = n => "$" + n.toLocaleString("es-CL");
+const waLink = txt => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(txt)}`;
+const avatar = nombre =>
+  `https://ui-avatars.com/api/?name=${encodeURIComponent(nombre)}&background=1F3329&color=C89B3C&bold=true&size=160`;
+
+/* --- textos de cabecera --- */
+document.title = `${CONFIG.negocio} | Reserva tu hora`;
+document.getElementById("cfg-city").textContent = CONFIG.ciudad;
+document.getElementById("cfg-tagline").textContent = CONFIG.tagline;
+document.getElementById("cfg-hours").textContent = CONFIG.horario;
+document.getElementById("cfg-addr").textContent = CONFIG.direccion;
+document.getElementById("cfg-rating").textContent = CONFIG.rating;
+
+/* --- contacto --- */
+const ICONS = {
+  wa: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.28-1.38a9.9 9.9 0 0 0 4.76 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm0 18.1h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.13.82.84-3.05-.2-.31a8.2 8.2 0 0 1-1.26-4.33c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.25 8.24Z"/></svg>',
+  ig: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"></circle></svg>',
+  fb: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1Z"/></svg>',
+  mp: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>',
+  em: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>'
+};
+
+const contactos = [
+  { ic:"wa", lb:"Agendar por WhatsApp", sb:"Respuesta rápida, reserva al toque",
+    href: waLink(`Hola ${CONFIG.negocio}, quiero agendar una hora ✂️`) },
+  { ic:"ig", lb:"Instagram", sb:"Mira nuestros trabajos", href: CONFIG.instagram },
+  { ic:"fb", lb:"Facebook", sb:"Novedades y promociones", href: CONFIG.facebook },
+  { ic:"mp", lb:"Cómo llegar", sb:"Ábrelo en Google Maps", href: CONFIG.maps },
+  { ic:"em", lb:"Enviar un correo", sb:"Consultas y convenios",
+    href: CONFIG.email ? "mailto:" + CONFIG.email : "" }
+];
+
+document.getElementById("contact-list").innerHTML = contactos
+  .filter(c => c.href)
+  .map(c => `
+    <a class="ticket" href="${c.href}" target="_blank" rel="noopener">
+      <span class="ic">${ICONS[c.ic]}</span>
+      <span class="tx"><span class="lb">${c.lb}</span><span class="sb">${c.sb}</span></span>
+      <span class="ar">→</span>
+    </a>`).join("");
+
+document.getElementById("fab-wa").href =
+  waLink(`Hola ${CONFIG.negocio} 👋, tengo una consulta.`);
+
+/* --- equipo --- */
+document.getElementById("team-grid").innerHTML = BARBEROS.map(b => {
+  const msg = `Hola ${CONFIG.negocio} 💈\n\nQuiero agendar una hora con *${b.nombre.toUpperCase()}*. ✂️\n\nVengo desde el link de Instagram, quedo atento a la confirmación.`;
+  return `
+    <a class="barber" href="${waLink(msg)}" target="_blank" rel="noopener">
+      <img class="ph" src="${b.foto || avatar(b.nombre)}" alt="${b.nombre}"
+           onerror="this.src='${avatar(b.nombre)}'">
+      <span class="nm">${b.nombre}</span>
+      <span class="rl">${b.rol}</span>
+      <span class="go">Agendar →</span>
+    </a>`;
+}).join("");
+
+/* --- servicios --- */
+document.getElementById("svc-list").innerHTML = SERVICIOS.map((s, i) => `
+  <article class="svc">
+    <div class="svc-img">
+      ${s.foto ? `<img src="${s.foto}" alt="${s.nombre}" onerror="this.remove()">` : ""}
+      <span class="ph-ic">✂️</span>
+    </div>
+    <div class="svc-body">
+      <h3>${s.nombre}</h3>
+      <p class="desc">${s.desc}</p>
+      <div class="meta">
+        <span class="chip">⏱ ${s.duracion}</span>
+        <span class="chip">💎 ${s.badge}</span>
+      </div>
+      <button class="incl-toggle" aria-expanded="false" data-incl="${i}">
+        <span class="cv">▸</span> Qué incluye
+      </button>
+      <ul class="incl" id="incl-${i}">
+        ${s.incluye.map(x => `<li>${x}</li>`).join("")}
+      </ul>
+      <div class="svc-foot">
+        <span class="price">${clp(s.precio)}</span>
+        <div class="svc-actions">
+          <button class="btn btn-add" data-add="${i}">Agregar</button>
+          <a class="btn btn-wa" target="_blank" rel="noopener"
+             href="${waLink(`Hola ${CONFIG.negocio} 💈\n\nQuiero agendar: *${s.nombre}* (${clp(s.precio)}). ✂️\n\nQuedo atento a la confirmación.`)}">Agendar</a>
+        </div>
+      </div>
+    </div>
+  </article>`).join("");
+
+/* toggle "qué incluye" */
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-incl]");
+  if (!t) return;
+  const list = document.getElementById("incl-" + t.dataset.incl);
+  const open = list.classList.toggle("open");
+  t.setAttribute("aria-expanded", open);
+});
+
+/* --- mapa --- */
+document.getElementById("map-frame").src =
+  `https://www.google.com/maps?q=${encodeURIComponent(CONFIG.mapsQuery)}&z=16&output=embed`;
+document.getElementById("map-name").textContent = CONFIG.negocio;
+document.getElementById("map-addr").textContent = CONFIG.direccion;
+document.getElementById("map-btn").href = CONFIG.maps ||
+  `https://www.google.com/maps/dir/?api=1&destination=${CONFIG.lat},${CONFIG.lng}`;
+
+/* --- testimonios --- */
+function pintarTestimonios(lista){
+  document.getElementById("tst-scroll").innerHTML = lista.map(t => `
+    <div class="tst">
+      <div class="who">${t.nombre}</div>
+      <div class="st">${"★".repeat(t.estrellas)}${"☆".repeat(5 - t.estrellas)}</div>
+      <p class="qt">“${t.texto}”</p>
+    </div>`).join("");
+}
+
+pintarTestimonios(TESTIMONIOS);
+
+// Si activaste reviewsAuto, reemplaza los testimonios por los reales de Google
+if (CONFIG.reviewsAuto){
+  fetch("/api/reviews")
+    .then(r => r.ok ? r.json() : Promise.reject())
+    .then(d => {
+      if (d.reviews && d.reviews.length){
+        pintarTestimonios(d.reviews);
+        if (d.rating) document.getElementById("cfg-rating").textContent =
+          `${d.rating} / 5 · ${d.total} reseñas en Google`;
+      }
+    })
+    .catch(() => { /* si falla, quedan los testimonios manuales */ });
+}
+
+/* --- carrito --- */
+let cart = [];
+
+function renderCart(){
+  const box = document.getElementById("cart-items");
+  if (!cart.length){
+    box.innerHTML = `<p class="empty">Aún no has agregado servicios.<br>Explora el menú y arma tu visita.</p>`;
+  } else {
+    box.innerHTML = cart.map((i, idx) => `
+      <div class="cart-row">
+        <div class="nm2"><b>${SERVICIOS[i].nombre}</b><small>${SERVICIOS[i].duracion}</small></div>
+        <span class="pr">${clp(SERVICIOS[i].precio)}</span>
+        <button class="rm" data-rm="${idx}" aria-label="Quitar">×</button>
+      </div>`).join("");
+  }
+  const total = cart.reduce((a, i) => a + SERVICIOS[i].precio, 0);
+  document.getElementById("cart-total").textContent = clp(total);
+  const badge = document.getElementById("cart-badge");
+  badge.textContent = cart.length;
+  badge.hidden = cart.length === 0;
+}
+
+document.addEventListener("click", e => {
+  const add = e.target.closest("[data-add]");
+  if (add){
+    const i = +add.dataset.add;
+    if (!cart.includes(i)){
+      cart.push(i);
+      add.textContent = "Agregado ✓";
+      add.classList.add("added");
+      setTimeout(() => { add.textContent = "Agregar"; add.classList.remove("added"); }, 1400);
+    }
+    renderCart();
+  }
+  const rm = e.target.closest("[data-rm]");
+  if (rm){ cart.splice(+rm.dataset.rm, 1); renderCart(); }
+});
+
+/* --- modales --- */
+const open  = id => document.getElementById(id).classList.add("show");
+const close = id => document.getElementById(id).classList.remove("show");
+
+document.getElementById("fab-cart").onclick = () => { renderCart(); open("ov-cart"); };
+document.getElementById("go-booking").onclick = () => { close("ov-cart"); open("ov-book"); };
+
+document.querySelectorAll("[data-close]").forEach(b =>
+  b.onclick = () => close(b.dataset.close));
+
+document.querySelectorAll(".overlay").forEach(o =>
+  o.addEventListener("click", e => { if (e.target === o) o.classList.remove("show"); }));
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") document.querySelectorAll(".overlay.show")
+    .forEach(o => o.classList.remove("show"));
+});
+
+/* --- select de barberos --- */
+document.getElementById("f-barber").innerHTML =
+  `<option value="">Sin preferencia</option>` +
+  BARBEROS.map(b => `<option value="${b.nombre}">${b.nombre}</option>`).join("");
+
+/* --- enviar reserva por WhatsApp --- */
+document.getElementById("send-wa").onclick = () => {
+  const nombre = document.getElementById("f-name").value.trim();
+  const errName = document.getElementById("e-name");
+
+  if (!nombre){
+    errName.classList.add("show");
+    document.getElementById("f-name").focus();
+    return;
+  }
+  errName.classList.remove("show");
+
+  const barbero = document.getElementById("f-barber").value;
+  const fecha   = document.getElementById("f-date").value;
+  const hora    = document.getElementById("f-time").value;
+  const nota    = document.getElementById("f-note").value.trim();
+  const total   = cart.reduce((a, i) => a + SERVICIOS[i].precio, 0);
+
+  let msg = `💈 *RESERVA — ${CONFIG.negocio.toUpperCase()}* 💈\n\n`;
+  msg += `👤 Nombre: *${nombre}*\n`;
+  if (barbero) msg += `✂️ Barbero: *${barbero}*\n`;
+  if (fecha)   msg += `📅 Día: *${fecha}*\n`;
+  if (hora)    msg += `🕐 Hora: *${hora}*\n`;
+
+  if (cart.length){
+    msg += `\n📋 *Servicios:*\n`;
+    cart.forEach(i => { msg += `• ${SERVICIOS[i].nombre} — ${clp(SERVICIOS[i].precio)}\n`; });
+    msg += `\n💰 Total estimado: *${clp(total)}*\n`;
+  }
+
+  if (nota) msg += `\n📝 Comentario: ${nota}\n`;
+  msg += `\n⚡ Vengo desde la web, quedo atento a la confirmación.`;
+
+  window.open(waLink(msg), "_blank");
+};
+</script>
 </body>
 </html>
